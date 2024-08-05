@@ -1,9 +1,12 @@
-import './homePage.css'
+import { Link } from 'react-router-dom';
+import './homePage.css';
 
 const Homepage = () => {
   return (
-    <div className='homepage'>Homepage</div>
-  )
-}
+    <div className="homepage">
+      <Link to="/dashboard" className="dashboard-link">Dashboard</Link>
+    </div>
+  );
+};
 
-export default Homepage
+export default Homepage;

@@ -6,21 +6,46 @@ import Homepage from "./routes/homePage/Homepage"
 import Dashboard from "./routes/dashboardPage/DashboardPage"
 import ChatPage from "./routes/chatPage/ChatPage"
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
+import RootLayout from "./layout/rootLayout/RootLayout"
+import DashBoardLayout from './layout/dashboardlayout/DashBoardLayout.jsx'
+import SignIn from "./routes/signInPage/SignInPage"
+import SignUp from "./routes/signUpPage/SignUpPage"
+
 
 const router = createBrowserRouter([
   {
-    path: "/",
-    element: (
-      <Homepage />
-    ),
-  },
-  {
-    path: "/dashboard",
-    element:<Dashboard />,
+    element:<RootLayout />,
     children:[
-     {path:"/dashboard/page/:id" ,element:<ChatPage />} 
+      {
+        path:'/',
+        element:<Homepage />
+      },
+      {
+        path:'/sign-in/*',
+        element:<SignIn />
+      },
+      {
+        path:'/sign-up/*',
+        element:<Homepage />
+      },
+      {
+        element:<DashBoardLayout />,
+        children:[
+          {
+            path:'/dashboard',
+            element:<Dashboard />
+          },
+          {
+            path:'/dashboard/chats/:id',
+            element:<ChatPage />
+          }
+        ]
+      }
+     
     ]
-  },
+  }
+
+
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
